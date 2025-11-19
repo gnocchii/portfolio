@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Environment, Lightformer } from '@react-three/drei'
 import { Suspense } from 'react'
 import ChromeText from './ChromeText'
+import LiquidEther from './LiquidEther'
 import * as THREE from 'three'
 
 function Scene() {
@@ -15,14 +16,45 @@ function Scene() {
       justifyContent: 'center',
       alignItems: 'center'
     }}>
+      {/* LiquidEther Background */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0
+      }}>
+        <LiquidEther
+          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
+
+      {/* Three.js Canvas with Chrome Text */}
       <Canvas
         shadows
         gl={{
           antialias: true,
+          alpha: true,
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.5,
           outputColorSpace: THREE.SRGBColorSpace
         }}
+        style={{ position: 'relative', zIndex: 1 }}
       >
         <Suspense fallback={null}>
           <PerspectiveCamera makeDefault position={[0, 0, 12]} fov={50} />
