@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Scene from './components/Scene'
 import './App.css'
 
 // Sample project data
@@ -71,7 +72,9 @@ function App() {
       <main className="main">
         {/* Hero Section */}
         <section className={`hero ${isVisible ? 'visible' : ''}`}>
-          <h1 className="hero-name">MELODY</h1>
+          <div className="hero-3d">
+            <Scene />
+          </div>
           <p className="hero-description">
             Product Designer reimagining complex challenges into elegant, user-centered solutions
           </p>
