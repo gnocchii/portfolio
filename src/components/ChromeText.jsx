@@ -5,11 +5,11 @@ import { Text3D, Center } from '@react-three/drei'
 function ChromeText({ text = 'MELODY' }) {
   const textRef = useRef()
 
-  // Gentle floating animation
+  // Gentle floating animation - no rotation
   useFrame((state) => {
     if (textRef.current) {
       textRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.15
-      textRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.05
+      textRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.08
     }
   })
 
@@ -28,19 +28,21 @@ function ChromeText({ text = 'MELODY' }) {
         bevelSegments={20}
       >
         {text}
-        {/* Chrome material with high metalness and low roughness */}
+        {/* Lighter shimmery chrome material */}
         <meshStandardMaterial
-          color="#ffffff"
-          metalness={1.0}
-          roughness={0.02}
-          envMapIntensity={3}
+          color="#f0f0f0"
+          metalness={0.95}
+          roughness={0.15}
+          envMapIntensity={2.5}
+          emissive="#ffffff"
+          emissiveIntensity={0.1}
         />
       </Text3D>
 
       {/* Shadow plane */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
         <planeGeometry args={[20, 20]} />
-        <shadowMaterial opacity={0.3} />
+        <shadowMaterial opacity={0.15} />
       </mesh>
     </Center>
   )
