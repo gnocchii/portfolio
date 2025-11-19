@@ -18,12 +18,12 @@ function ChromeText({ text = 'MELODY' }) {
       <Text3D
         ref={textRef}
         font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
-        size={1.8}
-        height={0.5}
+        size={1.2}
+        height={0.4}
         curveSegments={32}
         bevelEnabled={true}
-        bevelThickness={0.2}
-        bevelSize={0.12}
+        bevelThickness={0.15}
+        bevelSize={0.1}
         bevelOffset={0}
         bevelSegments={20}
       >

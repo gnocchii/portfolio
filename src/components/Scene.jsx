@@ -8,9 +8,11 @@ function Scene() {
   return (
     <div style={{
       width: '100%',
+      maxWidth: '1400px',
       height: '60vh',
       background: 'transparent',
-      position: 'relative'
+      position: 'relative',
+      margin: '0 auto'
     }}>
       <Canvas
         shadows
@@ -22,7 +24,7 @@ function Scene() {
         }}
       >
         <Suspense fallback={null}>
-          <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
+          <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={45} />
 
           {/* Lighter, shimmery studio lighting for white background */}
           <ambientLight intensity={0.5} />

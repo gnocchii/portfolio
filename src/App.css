@@ -58,8 +58,11 @@
 
 .hero-3d {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-description {
