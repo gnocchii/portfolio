@@ -14,7 +14,7 @@ function ChromeText({ text = 'MELODY' }) {
   })
 
   return (
-    <Center position={[0, 0, 0]}>
+    <Center position={[-100, 0, 0]}>
       <Text3D
         ref={textRef}
         font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
