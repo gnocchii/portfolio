@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import Scene from './components/Scene'
+import Carousel from './components/Carousel'
+import DarkModeToggle from './components/DarkModeToggle'
+import HeroIntro from './components/HeroIntro'
 import './App.css'
 
 // Sample project data
@@ -59,10 +62,10 @@ function App() {
     <div className="app">
       {/* Fixed Header */}
       <header className="header">
-        <div className="header-initials">MY</div>
+        <div className="header-initials">☁️</div>
         <nav className="nav">
-          <a href="#work">Work</a>
           <a href="#about">About</a>
+          <a href="#work">Work</a>
           <a href="#play">Play</a>
           <a href="#photos">Photos</a>
         </nav>
@@ -75,24 +78,14 @@ function App() {
           <div className="hero-3d">
             <Scene />
           </div>
-          <p className="hero-description">
-            Product Designer reimagining complex challenges into elegant, user-centered solutions
-          </p>
+          <div id="about">
+            <HeroIntro />
+          </div>
         </section>
 
-        {/* Work Section */}
+        {/* Work Section - Carousel */}
         <section className="work" id="work">
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                </div>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-              </div>
-            ))}
-          </div>
+          <Carousel projects={projects} />
         </section>
       </main>
 
@@ -110,6 +103,9 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* Dark Mode Toggle */}
+      <DarkModeToggle />
     </div>
   )
 }

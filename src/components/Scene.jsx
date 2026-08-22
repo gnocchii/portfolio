@@ -1,11 +1,31 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Environment, Lightformer } from '@react-three/drei'
-import { Suspense } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import ChromeText from './ChromeText'
 import LiquidEther from './LiquidEther'
 import * as THREE from 'three'
 
 function Scene() {
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    // Check for dark mode on mount
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark-mode'))
+    }
+
+    checkDarkMode()
+
+    // Listen for dark mode changes
+    const observer = new MutationObserver(checkDarkMode)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div style={{
       width: '100%',
@@ -26,7 +46,7 @@ function Scene() {
         zIndex: 0
       }}>
         <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
+          colors={isDark ? ['#3d1f7a', '#7a1f5e', '#5e2f7a'] : ['#5227FF', '#FF9FFC', '#B19EEF']}
           mouseForce={20}
           cursorSize={100}
           isViscous={false}
